@@ -43,8 +43,12 @@ private:
 };
 class Student {
 public:
-	void SetNameStud(string name) {
-		 nameStudent.SetName(name);
+	void setPerson(Human person) {
+		
+
+	}
+	string SetNameStud() {
+		return nameStudent.GetName();
 		
 	}
 	void SetGroup(int group) {
@@ -102,7 +106,7 @@ int main() {
 	cout << "Введите отчество: ";
 	getline(cin, patronamic);
 	first.SetPatronamic(patronamic);
-	system("cls");
+	//system("cls");
 	cout << "Полное имя: "<<first.Fullname();
 	cout << "Возраст: " << first.GetAge();
 	//system("cls");
@@ -114,9 +118,12 @@ int main() {
 	cin >> group;
 	firstStudent.SetGroup(group);
 	cout << endl;
-	system("cls");
+	//system("cls");
 	cout << "специальность: " << firstStudent.GetSpecialization() << "\n";
 	cout << "группа: " << firstStudent.GetGroup();
+	cout<<"name: "<<first.GetName();
+	firstStudent.SetNameStud();
+
 	
 	
 
