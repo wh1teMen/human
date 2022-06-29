@@ -5,32 +5,49 @@ using namespace std;
 class Human {
 public:
 	void SetAge(int Age) {
+
 		this->Age = Age;
+		if (this->Age < 1) {
+			throw invalid_argument("Ошибка!!!!! Age < 1");
+		}
 	}
-	int GetAge() {
+	int GetAge()const noexcept {
+		
 		return Age;
 	}
 	void SetName(string Name) {
 		this->Name = Name;
+		if (Name.size() <= 2) {
+			throw exception("ошибка мало символов для имени!!!!");
+		}
 	}
-	string GetName()const {
+	string GetName()const noexcept{
 		return Name;
 	}
 	void SetSurname(string Surname) {
 		this->Surname = Surname;
+		if (Surname.size() <= 2) {
+			throw exception("ошибка мало символов для фамилии!!!!");
+		}
 	}
-	string GetSurname() {
+	string GetSurname()const noexcept  {
 		return Surname;
 	}
 	void SetPatronamic(string Patronamic) {
 		this->Patronamic = Patronamic;
+		if (Patronamic.size() <= 2) {
+			throw exception("ошибка мало символов для отчества!!!!");
+		}
+
 	}
-	string GetPatronamic() {
+	string GetPatronamic()const noexcept {
 		return Patronamic;
 	}
 	string Fullname() {
 		string str;
+		
 		str = Surname + " " + Name + " " + Patronamic + "\n";
+		
 		return str;
 	}
 
@@ -85,8 +102,10 @@ private:
 
 
 int main() {
-	string name,surname,patronamic,spec;
-	int age,group;
+
+
+	string name, surname, patronamic, spec;
+	int age, group;
 	system("chcp 1251>nul");
 	Human first;
 	first.SetName("иван");
@@ -95,19 +114,49 @@ int main() {
 	//stud.Stud();
 	cout << "Введите возраст: ";
 	cin >> age;
-	first.SetAge(age);
-	cout << "Введите имя: ";
+	try {
+		first.SetAge(age);
+	}
+	catch (exception& ex) {
+		std::cerr << ex.what();
+	}
+	//catch (...) { std::cerr << "indefined exeption"; }
+	//first.SetAge(age);
+	cout << "\nВведите имя: ";
 	cin.ignore();
 	getline(cin, name);
-	first.SetName(name);
-	cout << "Введите Фамилию: ";
+	try {
+		first.SetName(name);
+	}
+	catch (exception& ex) {
+		std::cerr << ex.what();
+	}
+	cout << "\nВведите Фамилию: ";
 	getline(cin, surname);
-	first.SetSurname(surname);
-	cout << "Введите отчество: ";
+	try {
+		first.SetSurname(surname);
+	}
+	catch (exception& ex) {
+		std::cerr << ex.what();
+	}
+
+	cout << "\nВведите отчество: ";
 	getline(cin, patronamic);
-	first.SetPatronamic(patronamic);
+	try {
+		first.SetPatronamic(patronamic);
+	}
+	catch (exception& ex) {
+		std::cerr << ex.what();
+	}
+
+
+
+
+
+
 	//system("cls");
-	cout << "Полное имя: "<<first.Fullname();
+	
+	cout << "\nПолное имя: " << first.Fullname();
 	cout << "Возраст: " << first.GetAge();
 	//system("cls");
 	Student firstStudent;
@@ -123,7 +172,7 @@ int main() {
 	cout << "группа: " << firstStudent.GetGroup();
 	cout<<"name: "<<first.GetName();
 	firstStudent.SetNameStud();
-
+	
 	
 	
 
